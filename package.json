@@ -1,0 +1,46 @@
+{
+  "name": "exchange",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon -w app.js --watch server --exec babel-node app.js",
+    "prd": "pm2 start bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@tronscan/client": "^0.2.47",
+    "bignumber.js": "^8.1.1",
+    "bip39": "^3.0.1",
+    "debug": "^2.6.3",
+    "ejs": "~2.3.3",
+    "ethereumjs-tx": "^1.3.7",
+    "ethereumjs-util": "^6.1.0",
+    "ethereumjs-wallet": "^0.6.3",
+    "koa": "^2.2.0",
+    "koa-body": "^4.1.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^2.0.1",
+    "koa-onerror": "^1.2.1",
+    "koa-router": "^7.1.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.2.1",
+    "web3": "^1.0.0-beta.52",
+    "tronweb": "^2.4.3",
+    "ripple-lib": "^1.2.1"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.8.1"
+  }
+}

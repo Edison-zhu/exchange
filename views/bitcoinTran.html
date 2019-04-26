@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ethereum-Membersheep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.min.css" />
+    <link rel="icon" href="/bitcoin.png" type="image/x-icon">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/bit.css">
+</head>
+
+<body  style="background-color: #eeeeee">
+<div id="nav"></div>
+<script>
+    $("#nav").load("/nav")
+</script>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/">Create Account</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/transaction">ERC20</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/bit">Bitcoin and EOS</a>
+        </li>
+    </ul>
+    <!--Bitcoin转账模块 -->
+    <div class="row" style="margin-top:60px">
+        <div class="col-sm">
+            <h4><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" style="width:32px;height: 32px;">&nbsp;<span style="color:#fab915">Bitcoin</span>(BTC)</h4>
+            <span style="position:relative;left: 300px;top: -42px" class="h3 text-semi-bold details-panel-item--price__value" data-currency-value="">¥37,030.22</span>
+            <span class="text-large"style="position:relative;left: 300px;top: -43px">CNY</span>
+            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #009e73">(<span data-format-percentage="" data-format-value="0.681278">0.15</span>%)</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="payBitAccount">付款地址</label>
+                <input id="payBitAccount" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="accaptBitAccount">收款地址</label>
+                <input id="accaptBitAccount" type="text" class="form-control" value=""/>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="sendTrxTransaction()">发送交易</button>
+    <div>
+
+    </div>
+
+    <!--波场TRX转账模块 -->
+    <div class="row" style="margin-top: 60px">
+        <div class="col-sm">
+            <h4><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png" style="width:32px;height: 32px;">&nbsp;<span style="color: red">TRON</span>(TRX)</h4>
+            <span style="position:relative;left: 300px;top: -42px" class="h3 text-semi-bold details-panel-item--price__value" data-currency-value="">¥0.157746</span>
+            <span class="text-large"style="position:relative;left: 300px;top: -43px">CNY</span>
+            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #009e73">(<span data-format-percentage="" data-format-value="0.681278">0.68</span>%)</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="payAccount">付款地址</label>
+                <input id="payAccount" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="accaptAccount">收款地址</label>
+                <input id="accaptAccount" type="text" class="form-control" value=""/>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="sendTrxTransaction()" id="btn">发送交易</button>
+    <div>
+
+    </div>
+
+    <!--XRP转账模块 -->
+    <div class="row" style="margin-top: 60px">
+        <div class="col-sm">
+            <h3><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/52.png" style="width:32px;height: 32px;">&nbsp;<span style="color: #1b1919">Xrp</span>(XRP)</h3>
+            <span style="position:relative;left: 300px;top: -42px" class="h3 text-semi-bold details-panel-item--price__value" data-currency-value="">¥0.24</span>
+            <span class="text-large"style="position:relative;left: 300px;top: -43px">CNY</span>
+            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #009e73">(<span data-format-percentage="" data-format-value="0.681278">0.14</span>%)</span>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="payAccount">付款地址</label>
+                <input id="payXrpAccount" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="accaptAccount">收款地址</label>
+                <input id="accaptXrpAccount" type="text" class="form-control" value=""/>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="sendTrxTransaction()">发送交易</button>
+</div>
+<br><br><br>
+<div id="list"></div>
+<script>
+    $("#list").load("/list")
+</script>
+</body>
+<script>
+
+    function sendTrxTransaction() {
+        const account = $("#accaptAccount").val()
+        const accapt = $("#payAccount").val()
+        if (account == ""){
+            alert("请先设置付款账户！")
+            return
+        }
+        if(accapt == ""){
+            alert("请输入收款地址")
+            return
+        }
+        var pra={account,accapt}
+        $.post("/token/trx",function (err) {
+            if (err){
+                alert("TRX交易成功")
+            }else {
+                alert("转账失败")
+            }
+        })
+    }
+
+
+</script>
+</html>

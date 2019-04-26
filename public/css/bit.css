@@ -1,0 +1,158 @@
+.bitcoin{
+    position: absolute;
+    left: 1080px;
+    top: 30px;
+}
+.cmc-nav__topbar {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    position: relative;
+    z-index: 1031;
+}
+.cmc-siteprefs {
+    display: flex;
+    margin-left: 950px;
+    margin-top: -20px;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #000;
+    position: relative;
+    font-family: 'Inter',Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-style: normal;
+}
+.cmc-siteprefs-separator {
+    width: 1px;
+    height: 15px;
+    background-color: #E3E7EB;
+    margin: 0 10px 0 15px;
+    vertical-align: middle;
+}
+.cmc-nav-button {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px;
+    padding: 5px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+}
+.cmc-flag-cn {
+    background-image: url(/cn.svg);
+}
+.cmc-flag {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.cmc-siteprefs__currency-flag {
+    height: 20px;
+    width: 20px;
+    border: 1px solid #EBEFF2;
+    border-radius: 50%;
+}
+footer {
+    box-shadow: 0 -1px 2px 0 #e1e5ea;
+    font-size: 13px;
+    padding: 48px 0;
+}
+footer .flex-container {
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+.text-center {
+    text-align: center;
+}
+.brand {
+    padding-top: 48px;
+    text-align: center;
+    border-right: 1px solid #e1e5ea;
+     flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    padding: 12px 18px;
+    font-size: 13px;
+}
+.footer-section {
+    border-right: 1px solid #e1e5ea;
+    flex: 1 1 auto;
+    padding: 12px 48px;
+}
+.margin-bottom--lv1 {
+    margin-bottom: 6px;
+}
+.footer__cmc-logo {
+    margin: 0 auto;
+}
+.cmc-logo_size_md {
+    width: 239px;
+    height: 41px;
+}
+.cmc-logo {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+}
+.text-gray-light {
+    color: rgba(39,52,64,0.27);
+}
+.margin-bottom--lv2 {
+    margin-bottom: 20px;
+}
+.footer-section:last-of-type {
+    border-right: none;
+}
+.overflow-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.col-xs-6 {
+    width: 50%;
+}
+.col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+    float: left;
+}
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    list-style: none;
+}
+.donate{
+    padding-left: 450px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+
+}
+.column-list {
+    height: 220px;
+    width: 100%;
+
+    overflow: scroll;
+    writing-mode: vertical-lr;
+    float: left;
+}
+
+

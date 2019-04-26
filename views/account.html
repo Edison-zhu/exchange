@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>钱包-Membersheep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.min.css"/>
+    <link rel="icon" href="/bitcoin.png" type="image/x-icon">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/bit.css">
+    <style>
+        .account {
+            margin-top: 100px;
+            text-align: center;
+        }
+        .trx{
+            margin-top: 90px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="nav"></div>
+<script>
+    $("#nav").load("/nav")
+</script>
+    <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Create Account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/transaction">ERC20</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/bit">Bitcoin and EOS</a>
+            </li>
+        </ul>
+        <div id="create" class="account">
+            <p style="font-size: 30px;font-weight: 600;"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" style="width: 32px;height: 32px;">Ethereum<span style="font-size: 19px;color: rgba(39,52,64,0.5);">(ETH)</span></p>
+            <p>输入密码</p>
+            <div style="padding: 50px 100px">
+                <input type="text" class="form-control" id="pwd" placeholder="输入密码" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="createAccount()">创建账户</button>
+        </div>
+
+        <!--创建波场账号 -->
+        <div class="trx">
+            <p style="font-size: 30px"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png" style="width:32px;height: 32px;">&nbsp;<span style="color: red">TRON</span><span style="font-size: 19px;color: rgba(39,52,64,0.5);">(TRX)</span></p>
+            <p>TRON账户无需输入密码</p>
+            <div style="padding: 50px 100px"id="addre">
+                <input type="text" class="form-control" placeholder="账号地址" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="TrxAccount()">创建账户</button>
+        </div>
+
+        <!--创建瑞波账号-->
+        <div class="trx">
+            <p style="font-size: 30px"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/52.png" style="width:32px;height: 32px;">&nbsp;<span>XRP</span><span style="font-size: 19px;color: rgba(39,52,64,0.5);">(XRP)</span></p>
+            <p>TRON账户无需输入密码</p>
+            <div style="padding: 50px 100px"id="Ripple">
+                <input type="text" class="form-control" placeholder="账号地址" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="rippleAccount()">创建账户</button>
+        </div>
+
+
+        <div id="download" class="account" style="display: none" >
+            <p style="font-size: 30px">保存你的<span style="color: red">Keystore</span> 文件</p>
+            <a id="downloadUrl" class="btn btn-success" href="#" role="button">下载 Keystore 文件 (UTC / JSON)</a>
+            <div style="margin-top:100px">
+                <button onclick="showKey()" type="button" class="btn btn-primary">下一步</button>
+            </div>
+        </div>
+
+        <div id="privateKey" class="account" style="display: none">
+            <p style="font-size: 30px">保存你的<span style="color: red">私钥</span></p>
+            <div id="info">
+            <textarea class="form-control" id="prikey" rows="3" disabled></textarea>
+                <div/>
+            <br/>
+            <a class="nav-link active" href="/">返回首页</a>
+        </div>
+
+      </div>
+    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="list"></div>
+<script>
+    $("#list").load("/list")
+</script>
+</body>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script>
+    function createAccount(){
+
+        var pwd = $("#pwd").val()
+        if (pwd == "") {
+            alert("密码不能为空！");
+            return
+        }
+
+        $.post("/account/create","pwd="+pwd, function(result){
+            alert(result.data)
+            if (result.code == 0) {
+                $("#create").hide()
+                $("#download").show()
+                $("#downloadUrl").attr("href", result.data.keystore)
+                alert(result.data.privateKey)
+                $("#prikey").html(result.data.privateKey)
+            }
+        })
+    }
+    function TrxAccount() {
+        $.post("/account/trx",function (res) {
+            alert("创建成功!"+"\n"+"账号地址为"+"\n"+"base58: " +res.data.address.base58+"\n"+"hex: "+res.data.address.hex)
+            $("#addre").html('账号地址:'+res.data.address.base58)
+        })
+    }
+    function rippleAccount() {
+        $.post('/account/xrp',function (accountInfo) {
+            alert("创建成功"+'\n'+'账号地址为:'+accountInfo.address)
+            $("#Ripple").html("账号地址:"+accountInfo.address)
+        })
+    }
+
+    function showKey(){
+        $("#download").hide()
+        $("#privateKey").show()
+    }
+</script>
+</html>
