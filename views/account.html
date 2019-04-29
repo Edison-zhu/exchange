@@ -71,6 +71,15 @@
             <button type="button" class="btn btn-primary" onclick="rippleAccount()">创建账户</button>
         </div>
 
+        <!-- 创建NEO账号-->
+        <div class="trx">
+            <p style="font-size: 30px"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1376.png" style="width:32px;height: 32px;">&nbsp;<span style="color:#00bd56">NEO</span><span style="font-size: 19px;color:rgba(39,52,64,0.5);">(NEO)</span></p>
+            <p>Neo账户无需输入密码</p>
+            <div style="padding: 50px 100px"id="NEO">
+                <input type="text" class="form-control" placeholder="账号地址" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="neoAccount()">创建账户</button>
+        </div>
 
         <div id="download" class="account" style="display: none" >
             <p style="font-size: 30px">保存你的<span style="color: red">Keystore</span> 文件</p>
@@ -100,6 +109,7 @@
 <script>
     $("#list").load("/list")
 </script>
+
 </body>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script>
@@ -132,6 +142,12 @@
         $.post('/account/xrp',function (accountInfo) {
             alert("创建成功"+'\n'+'账号地址为:'+accountInfo.address)
             $("#Ripple").html("账号地址:"+accountInfo.address)
+        })
+    }
+    function neoAccount() {
+        $.post('/account/neo',function (address) {
+            alert("创建成功"+'\n'+'账号地址为:'+address)
+            $("#NEO").html("账号地址:"+address)
         })
     }
 

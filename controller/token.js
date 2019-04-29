@@ -1,6 +1,6 @@
 const web3 = require("../utils/web3helper").getWeb3()
 const BigNumber = require('bignumber.js');
-const myContract = require("../utils/web3helper").getContract()
+const myContract = require("../utils/web3helper").getUsdtContract()
 
 module.exports = {
 
@@ -10,7 +10,7 @@ module.exports = {
             msg: '成功！',
             data: {}
         }
-        
+
         const data = ctx.request.body
 
         const currentAccount = data.currAccount
@@ -28,8 +28,8 @@ module.exports = {
 
         // 获取当前gasprice
         let gasPrice = await web3.eth.getGasPrice();
-        
-        // 以太币转账参数    
+
+        // 以太币转账参数
         let txParms = {
             from: currentAccount,
             // 合约地址
@@ -60,7 +60,7 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
-        
+
         ctx.body = returnResult
     }
 }

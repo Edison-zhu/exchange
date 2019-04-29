@@ -39,7 +39,7 @@
             <h4><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" style="width:32px;height: 32px;">&nbsp;<span style="color:#fab915">Bitcoin</span>(BTC)</h4>
             <span style="position:relative;left: 300px;top: -42px" class="h3 text-semi-bold details-panel-item--price__value" data-currency-value="">¥37,030.22</span>
             <span class="text-large"style="position:relative;left: 300px;top: -43px">CNY</span>
-            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #009e73">(<span data-format-percentage="" data-format-value="0.681278">0.15</span>%)</span>
+            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #d94040">(<span data-format-percentage="" data-format-value="0.681278">3.88</span>%)</span>
         </div>
     </div>
     <div class="row">
@@ -62,6 +62,35 @@
     <div>
 
     </div>
+    <!--USDT转账-->
+    <div class="row" style="margin-top:60px">
+        <div class="col-sm">
+            <h4><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" style="width:32px;height: 32px;">&nbsp;<span style="color:#15cda8">Tether</span>(USDT)</h4>
+            <span style="position:relative;left: 300px;top: -42px" class="h3 text-semi-bold details-panel-item--price__value" data-currency-value="">¥6.57</span>
+            <span class="text-large"style="position:relative;left: 300px;top: -43px">CNY</span>
+            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #009e73">(<span data-format-percentage="" data-format-value="0.681278">0.15</span>%)</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="payUSDTAccount">付款地址</label>
+                <input id="payUSDTAccount" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="accaptUSDTAccount">收款地址</label>
+                <input id="accaptUSDTAccount" type="text" class="form-control" value=""/>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="sendTrxTransaction()">发送交易</button>
+    <div>
+
+    </div>
 
     <!--波场TRX转账模块 -->
     <div class="row" style="margin-top: 60px">
@@ -69,7 +98,7 @@
             <h4><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png" style="width:32px;height: 32px;">&nbsp;<span style="color: red">TRON</span>(TRX)</h4>
             <span style="position:relative;left: 300px;top: -42px" class="h3 text-semi-bold details-panel-item--price__value" data-currency-value="">¥0.157746</span>
             <span class="text-large"style="position:relative;left: 300px;top: -43px">CNY</span>
-            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #009e73">(<span data-format-percentage="" data-format-value="0.681278">0.68</span>%)</span>
+            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #d94040">(<span data-format-percentage="" data-format-value="0.681278">0.68</span>%)</span>
         </div>
     </div>
     <div class="row">
@@ -115,12 +144,42 @@
         <div class="col-sm">
             <div class="form-group">
                 <label for="accaptAccount">收款地址</label>
+                <input id="accaptNeoAccount" type="text" class="form-control" value=""/>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="sendXrpTransaction()">发送交易</button>
+    <!--NEO转账模块-->
+
+    <div class="row" style="margin-top: 60px">
+        <div class="col-sm">
+            <h3><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1376.png" style="width:32px;height: 32px;">&nbsp;<span style="color: #1b1919">NEO</span>(NEO)</h3>
+            <span style="position:relative;left: 300px;top: -42px" class="h3 text-semi-bold details-panel-item--price__value" data-currency-value="">¥63.80</span>
+            <span class="text-large"style="position:relative;left: 300px;top: -43px">CNY</span>
+            <span class="h2 text-semi-bold positive_change "style="position:relative;left: 300px;top: -43px;color: #d94040">(<span data-format-percentage="" data-format-value="0.681278">5.70</span>%)</span>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="payAccount">付款地址</label>
+                <input id="payNeoAccount" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="accaptAccount">收款地址</label>
                 <input id="accaptXrpAccount" type="text" class="form-control" value=""/>
             </div>
         </div>
     </div>
     <button type="button" class="btn btn-info" onclick="sendTrxTransaction()">发送交易</button>
 </div>
+
+
 <br><br><br>
 <div id="list"></div>
 <script>
@@ -146,6 +205,14 @@
                 alert("TRX交易成功")
             }else {
                 alert("转账失败")
+            }
+        })
+    }
+
+    function sendXrpTransaction() {
+        $.post('/token/xrp',function (err) {
+            if (err){
+                alert("XRP转账成功")
             }
         })
     }

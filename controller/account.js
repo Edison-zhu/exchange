@@ -5,6 +5,7 @@ const config = require("../config/config")
 const myContract = require("../utils/web3helper").getContract()
 const HTContract = require("../utils/web3helper").getHtContract()
 const NexoContract = require("../utils/web3helper").getNexoContract()
+const usdtContract = require("../utils/web3helper").getUsdtContract()
 
 module.exports = {
 	async createAccount (ctx) {
@@ -13,7 +14,7 @@ module.exports = {
             msg: '成功！',
             data: {}
         }
-        
+
         let data = ctx.request.body
         const pwd = data.pwd
 
@@ -22,19 +23,19 @@ module.exports = {
 
         // encrypt 返回一个JSON 对象
         const keystoreJson = await account.encrypt(pwd)
-        
+
         // 将 JSON 对象转为字符串
         const keystoreStr = JSON.stringify(keystoreJson)
 
         // 生成随机文件存储 keystore 的字符串
         const randFilename = "UTC--"+new Date().toISOString()+"--"+account.address
-        
+
         // 设置存储文件的目录
         const filePath =path.join(__dirname,"../public/keystore/"+randFilename)
-        
+
         // 将 keystore 的内容写入文件中
         await fileUtil.writeFile(filePath,keystoreStr)
-        
+
         // 将 用户地址、私钥、keystore 数据返回
         const result = {"account":account.address,"privateKey":account.privateKey,"keystore": config.keystoreUrl+randFilename}
         returnResult.data = result
@@ -50,7 +51,7 @@ module.exports = {
             msg: '成功！',
             data: {}
         }
-        
+
         const data = ctx.request.body
         const privateKey = data.privateKey
 
@@ -77,7 +78,7 @@ module.exports = {
             msg: '成功！',
             data: {}
         }
-        
+
         const data = ctx.request.body;    // 获取上传文件
 
         const keystoreFile =  ctx.request.files.file
@@ -107,6 +108,8 @@ module.exports = {
         returnResult.data.HTsymbol = tokenResult.HTsymbol
         returnResult.data.NEXObalance = tokenResult.NEXObalance
         returnResult.data.NEXOsymbol = tokenResult.NEXOsymbol
+        returnResult.data.USDTsymbol = tokenResult.USDTsymbol
+        returnResult.data.USDTbalance = tokenResult.USDTbalance
 
         ctx.body = returnResult
     },
@@ -119,7 +122,9 @@ module.exports = {
             HTbalance:0,
             HTsymbol:'',
             NEXObalance:0,
-            NEXOsymbol:''
+            NEXOsymbol:'',
+            USDTbalance:0,
+            USDTsymbol:''
         }
 
         // 代币小数点位数
@@ -140,6 +145,12 @@ module.exports = {
         const NEXObalance = await NexoContract.methods.balanceOf(account.address).call()
         const NEXObalanceNum = await NEXObalance/Math.pow(10,NEXOdecimals)
 
+        //USDT相关信息
+        const USDTdecimals = await usdtContract.methods.decimals().call()
+        const USDTsymbol = await usdtContract.methods.symbol().call()
+        const USDTbalance = await usdtContract.methods.balanceOf(account.address).call()
+        const USDTbalanceNum = await USDTbalance/Math.pow(10,USDTdecimals)
+
         returnResult.HTbalance = HTtokenBalanceNum
         returnResult.HTsymbol = HTsymbol
 
@@ -148,7 +159,10 @@ module.exports = {
 
         returnResult.NEXOsymbol=NEXOsymbol
         returnResult.NEXObalance=NEXObalanceNum
-        
+
+        returnResult.USDTbalance=USDTbalanceNum
+        returnResult.USDTsymbol=USDTsymbol
+
        return returnResult
 
     }

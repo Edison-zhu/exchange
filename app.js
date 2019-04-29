@@ -28,4 +28,4 @@ app.use(stati(
 // 初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods())
 app.listen(3000);
-console.log('server is starting at port 3000')
+console.log('server is at port 3000')

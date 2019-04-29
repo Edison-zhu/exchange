@@ -6,6 +6,7 @@ const tokenController = require("../controller/token")
 const HTcontroller = require("../controller/HT")
 const TrxAccount = require("../controller/Trx")
 const XrpAccount = require("../controller/rippleInfo")
+const NeoAccount = require("../controller/neoAccount")
 
 router.get('/', accountController.getAccountList);
 
@@ -21,6 +22,7 @@ router.post('/account/privatekey',accountController.getAccountByPrivatekey)
 router.post('/account/keystore',accountController.getAccountByKeystore)
 router.post('/account/trx',TrxAccount.createTrxAccount)
 router.post('/account/xrp',XrpAccount.createXrpAccount)
+router.post('/account/neo',NeoAccount.createNeoAccount)
 
 //页面相关接口
 router.get('/transaction', transactionController.transaction)
@@ -33,4 +35,5 @@ router.post('/transaction/send', transactionController.sendTransaction)
 router.post('/token/send', tokenController.sendTokenTransaction)
 router.post('/token/HT',HTcontroller.sendHT)
 router.post('/token/trx',TrxAccount.sendTrx)
+router.post('/token/xrp',XrpAccount.sendXrp)
 module.exports = router

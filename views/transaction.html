@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row" style="margin-top: 60px;">
             <div class="col-sm">
                 <div class="form-group">
@@ -93,6 +93,7 @@
                         <input type="text" class="form-control" id="txValue" placeholder="">
                         <div class="input-group-append">
                             <select id="tokenType">
+                                <option value="usdt">USDT</option>
                                 <option value="eth">ETH</option>
                                 <option value="kyb" id="Erc20token">BNB</option>
                                 <option value="ht"  id="HT" >HT</option>
@@ -100,12 +101,12 @@
                             </select>
                           </div>
                     </div>
-                    
+
                 </div>
 
                 <input type="hidden" name="currAccount" id="currAccount" value="" />
                 <input type="hidden" name="currAccountKey" id="currAccountKey" value="" />
-                
+
                 <button type="button" class="btn btn-info" onclick="sendTransaction()">发送交易</button>
 
                 <div id="txHashDiv" style="margin-top: 20px;display: none">
@@ -124,11 +125,11 @@
                         <div id="balanceDiv">
 
                         </div>
-                    <div id="num" style="width: 20px; font-size: 17px; word-wrap: break-word;margin-left: 80px;margin-top: -96px">
+                    <div id="num" style="width: 20px; font-size: 17px; word-wrap: break-word;margin-left: 80px;margin-top: -123px">
 
                     </div>
                     </div>
-    
+
                 </div>
         </div>
     </div>
@@ -175,7 +176,7 @@
                 const balance = result.balance
                 const tokenBalance = result.tokenBalance
                 const tokenSymbol = result.tokenSymbol
-                
+
                 $("#balanceDiv").html(balance+' ETH' +'<br/> '+tokenBalance+ ' '+tokenSymbol+'<br/>')
                 $("#Erc20token").html(tokenSymbol)
                 $("#addressDiv").html(address)
@@ -210,15 +211,17 @@
                 const tokenSymbol2 = result.HTsymbol
                 const NEXObalance = result.NEXObalance
                 const NEXOsybol = result.NEXOsymbol
+                const USDTbalance = result.USDTbalance
+                const USDTsybol = result.USDTsymbol
 
-                $("#balanceDiv").html('<img src="https://etherscan.io/images/ethereum-icon.png" style="width: 1.11719rem;height: 1.11719rem;">'+'&nbsp'+'ETH '+
+                $("#balanceDiv").html('<img src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" style="width: 1.11719rem;height: 1.11719rem;">'+USDTsybol+'<br>'+'<img src="https://etherscan.io/images/ethereum-icon.png" style="width: 1.11719rem;height: 1.11719rem;">'+'&nbsp'+'ETH '+
                     '<br/>'+'<img src="https://etherscan.io/token/images/bnb_28_2.png" style="height: 1.11719rem;">'+'&nbsp'+ tokenSymbol +
                     '<br/>'+'<img src="https://etherscan.io/token/images/huobi_28.png" style="height: 1.11719rem;">'+'&nbsp'+ tokenSymbol2 +
                     '<br/>'+'<img src="https://etherscan.io/token/images/nexo_28.png "style="width: 1.11719rem;height: 1.11719rem;">'+'&nbsp'+NEXOsybol)
                 $("#addressDiv").html(address)
                 $("#currAccount").val(address)
                 $("#currAccountKey").val(privateKey)
-                $("#num").html(balance+tokenBalance+HTbalance+NEXObalance)
+                $("#num").html(USDTbalance+balance+tokenBalance+HTbalance+NEXObalance)
             }
         }).fail(function(res) {});
     }
@@ -230,7 +233,7 @@
         const txValue = $("#txValue").val()
         const tokenType = $("#tokenType").val()
 
-        
+
 
         if (currAccount == "" || privateKey == ""){
             alert("请先解锁账户！")
@@ -261,7 +264,7 @@
             })
         }
 
-        if (tokenType == "kyb"){
+        if (tokenType == "usdt"){
             $.post("/token/send",params,function(res){
                 if (res.code == 0) {
                     alert("交易成功！")
