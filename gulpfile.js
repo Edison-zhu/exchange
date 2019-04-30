@@ -13,7 +13,7 @@ gulp.task('browser-sync', ['nodemon'], function() {
         proxy: "http://localhost:3000", // 注意这里要换成你在koa中设定的 服务端口一般是3000
         files: ["public/**/*.*","views","controller"],
         browser: "google chrome",
-        port: 4001,
+        port: 4000,
     });
 });
 gulp.task('nodemon', function (cb) {

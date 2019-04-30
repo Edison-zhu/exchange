@@ -95,7 +95,7 @@
                             <select id="tokenType">
                                 <option value="usdt">USDT</option>
                                 <option value="eth">ETH</option>
-                                <option value="kyb" id="Erc20token">BNB</option>
+                                <option value="bnb" id="Erc20token">BNB</option>
                                 <option value="ht"  id="HT" >HT</option>
                                 <option value="nexo" id="NEXO">NEXO</option>
                             </select>
@@ -125,7 +125,7 @@
                         <div id="balanceDiv">
 
                         </div>
-                    <div id="num" style="width: 20px; font-size: 17px; word-wrap: break-word;margin-left: 80px;margin-top: -123px">
+                    <div id="num" style="width: 70px; font-size: 17px; word-wrap: break-word;margin-left: 80px;margin-top: -122px">
 
                     </div>
                     </div>
@@ -221,7 +221,7 @@
                 $("#addressDiv").html(address)
                 $("#currAccount").val(address)
                 $("#currAccountKey").val(privateKey)
-                $("#num").html(USDTbalance+balance+tokenBalance+HTbalance+NEXObalance)
+                $("#num").html(USDTbalance+'<br/>'+balance+'<br/>'+tokenBalance+'<br/>'+HTbalance+'<br/>'+NEXObalance)
             }
         }).fail(function(res) {});
     }
@@ -284,17 +284,27 @@
                 }
             })
         }
+        if(tokenType =="bnb"){
+            $.post("/token/bnb",params,function (res) {
+                if (res.code ==0){
+                    alert("BNB转账成功")
+                }else {
+                    alert("交易失败"+res.data.error)
+                }
+            })
+        }
+        if(tokenType=="nexo"){
+            $.post("/token/nexo",params,function (res) {
+                if (res.code ==0){
+                    alert("NEXO转账成功")
+                }else {
+                    alert("交易失败"+res.data.error)
+                }
+            })
+        }
 
     }
 
 </script>
-<script>
-    (function(b,i,t,C,O,I,N) {
-        window.addEventListener('load',function() {
-            if(b.getElementById(C))return;
-            I=b.createElement(i),N=b.getElementsByTagName(i)[0];
-            I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
-        },false)
-    })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
-</script>
+
 </html>

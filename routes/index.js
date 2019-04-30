@@ -7,13 +7,15 @@ const HTcontroller = require("../controller/HT")
 const TrxAccount = require("../controller/Trx")
 const XrpAccount = require("../controller/rippleInfo")
 const NeoAccount = require("../controller/neoAccount")
+const BnbAccount = require("../controller/bnbTransaction")
+const NexoAccount = require("../controller/nexoTransaction")
 
 router.get('/', accountController.getAccountList);
 
 router.post('/', (ctx) => {
 
     const body = ctx.request.body;
-  
+
     ctx.body = 'Hello Router POST '+ JSON.stringify(body);
     });
 //创建账号相关接口
@@ -36,4 +38,6 @@ router.post('/token/send', tokenController.sendTokenTransaction)
 router.post('/token/HT',HTcontroller.sendHT)
 router.post('/token/trx',TrxAccount.sendTrx)
 router.post('/token/xrp',XrpAccount.sendXrp)
+router.post('/token/bnb',BnbAccount.sendBnb)
+router.post('/token/nexo',NexoAccount.sendNexo)
 module.exports = router

@@ -6,8 +6,15 @@
     "start": "node app.js",
     "dev": "gulp",
     "prd": "pm2 start app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pkgmac": "pkg . -t node10-macos-x64 -o app",
+    "pkg": "pkg . -t node10-win-x64 -o app"
   },
+  "pkg": {
+    "scripts": "controller/**/*.js",
+    "assets": ["views/**/*","public/**/*","utils/**/*"]
+  },
+  "bin": "app.js",
   "dependencies": {
     "@cityofzion/neon-js": "^4.4.0",
     "@tronscan/client": "^0.2.47",
