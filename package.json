@@ -2,19 +2,13 @@
   "name": "exchange",
   "version": "0.1.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "gulp",
     "prd": "pm2 start app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pkgmac": "pkg . -t node10-macos-x64 -o app",
-    "pkg": "pkg . -t node10-win-x64 -o app"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "pkg": {
-    "scripts": "controller/**/*.js",
-    "assets": ["views/**/*","public/**/*","utils/**/*"]
-  },
-  "bin": "app.js",
   "dependencies": {
     "@cityofzion/neon-js": "^4.4.0",
     "@tronscan/client": "^0.2.47",
@@ -37,12 +31,12 @@
     "koa-views": "^5.2.1",
     "ripple-lib": "^1.2.1",
     "tronweb": "^2.4.3",
-    "web3": "^1.0.0-beta.52"
+    "web3": "^1.0.0-beta.55"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "browser-sync": "^2.26.5",
-    "gulp": "^3.9.1",
+    "gulp": "^2.7.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-nodemon": "^2.4.2",
