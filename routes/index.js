@@ -22,6 +22,7 @@ router.post('/', (ctx) => {
 router.post('/account/create',accountController.createAccount)
 router.post('/account/privatekey',accountController.getAccountByPrivatekey)
 router.post('/account/keystore',accountController.getAccountByKeystore)
+router.post('/account/bip',accountController.getAccountmnemonic)
 router.post('/account/trx',TrxAccount.createTrxAccount)
 router.post('/account/xrp',XrpAccount.createXrpAccount)
 router.post('/account/neo',NeoAccount.createNeoAccount)
@@ -34,6 +35,7 @@ router.get('/list',transactionController.List)
 router.post('/transaction/send', transactionController.sendTransaction)
 
 //转账相关接口
+router.post('/tran/hash',transactionController.getTransFromHash)
 router.post('/token/send', tokenController.sendTokenTransaction)
 router.post('/token/HT',HTcontroller.sendHT)
 router.post('/token/trx',TrxAccount.sendTrx)

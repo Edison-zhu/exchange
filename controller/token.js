@@ -23,8 +23,8 @@ module.exports = {
         // 获取设置的位数
         const decimals = await myContract.methods.decimals().call()
         // 将输入的值 转为 最小单位的值
-        const value = BigNumber(txValue * Math.pow(10,decimals));
-        const txData = myContract.methods.transfer(reciptAccount, value).encodeABI();
+       // const value = BigNumber(txValue * Math.pow(10,decimals));
+        const txData = myContract.methods.transfer(reciptAccount, txValue).encodeABI();
 
         // 获取当前gasprice
         let gasPrice = await web3.eth.getGasPrice();

@@ -6,6 +6,7 @@ const myContract = require("../utils/web3helper").getContract()
 const HTContract = require("../utils/web3helper").getHtContract()
 const NexoContract = require("../utils/web3helper").getNexoContract()
 const usdtContract = require("../utils/web3helper").getUsdtContract()
+const bip = require("bip39")
 
 module.exports = {
 	async createAccount (ctx) {
@@ -70,6 +71,11 @@ module.exports = {
         returnResult.data.tokenBalance = tokenResult.balance
         returnResult.data.tokenSymbol = tokenResult.symbol
         ctx.body = returnResult
+    },
+    async getAccountmnemonic(ctx){
+        let mnemonic = bip.generateMnemonic()
+        ctx.body = mnemonic
+        console.log(mnemonic)
     },
     async getAccountByKeystore(ctx) {
 

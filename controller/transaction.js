@@ -19,7 +19,8 @@ module.exports = {
         let returnResult = {
             code: 0,
             msg: '成功！',
-            data: {}
+            data: {},
+            hs:""
         }
         
         const data = ctx.request.body
@@ -54,9 +55,12 @@ module.exports = {
 
         // 将签过名的账单进行发送
         try {
-            await web3.eth.sendSignedTransaction(signTx.rawTransaction, function(error, hash){
+            await web3.eth.sendSignedTransaction(signTx.rawTransaction, function(error,hash){
+                console.log(hash);
                 if (!error) {
-                    returnResult.data.hash = hash
+                    returnResult.hs = hash
+                    console.log("交易哈希值:"+returnResult.hs)
+                    return returnResult.hs;
                 } else {
                     returnResult.code = "101"
                     returnResult.msg = "失败！"
@@ -69,5 +73,22 @@ module.exports = {
         }
         
         ctx.body = returnResult
+
+
+
+
+    },
+    async getTransFromHash(ctx) {
+        let hash = this.state;
+        let transaction;
+        try {
+            transaction = await web3.eth.getTransaction(hash);
+        } catch (error) {
+            console.info(JSON.stringify("catch error: " + JSON.stringify(error), null, 2), "\n ");
+        }
+        if (transaction) {
+            this.setState({transactionInfo: transaction})
+        }
+        ctx.body = hash
     }
 }
