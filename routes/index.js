@@ -28,6 +28,7 @@ router.post('/account/xrp',XrpAccount.createXrpAccount)
 router.post('/account/neo',NeoAccount.createNeoAccount)
 
 //页面相关接口
+router.get('/demo',accountController.getDemo)
 router.get('/transaction', transactionController.transaction)
 router.get('/bit',transactionController.Bitcoin)
 router.get('/nav',transactionController.Nav)

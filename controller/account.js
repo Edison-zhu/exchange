@@ -45,6 +45,9 @@ module.exports = {
     async getAccountList (ctx) {
         await ctx.render("account")
     },
+    async getDemo(ctx){
+	    await ctx.render("demo");
+    },
     async getAccountByPrivatekey(ctx) {
 
         let returnResult = {
